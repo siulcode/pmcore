@@ -52,8 +52,8 @@ return array(
 		'db'=>array(
 			'connectionString' => 'mysql:host=localhost;dbname=pmcore',
 			'emulatePrepare' => true,
-			'username' => 'root',
-			'password' => '',
+			'username' => 'tddbuser',
+			'password' => 'password',
 			'charset' => 'utf8',
 		),
 		'errorHandler'=>array(
