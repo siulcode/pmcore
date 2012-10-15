@@ -59,18 +59,18 @@ class AdvertiserController extends Controller {
      */
     public function actionCreate() {
         $model = new Advertiser;
-
+        $newkey = $this->getNewKey(); //New key to be inserted
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
-
         if (isset($_POST['Advertiser'])) {
             $model->attributes = $_POST['Advertiser'];
             if ($model->save())
                 $this->redirect(array('view', 'id' => $model->advertiser_id));
         }
-
+        
         $this->render('create', array(
             'model' => $model,
+            'newkey'=> $newkey,
         ));
     }
 
@@ -115,7 +115,7 @@ class AdvertiserController extends Controller {
     public function actionIndex() {
         $dataProvider = new CActiveDataProvider('Advertiser');
         $this->render('index', array(
-            'dataProvider' => $dataProvider,
+            'dataProvider'  => $dataProvider,
         ));
     }
 
@@ -136,13 +136,37 @@ class AdvertiserController extends Controller {
     /**
      * Returns the data model based on the primary key given in the GET variable.
      * If the data model is not found, an HTTP exception will be raised.
+     * 
+     * If no ID is passed, this method will return the table's last ID. 
+     * 
      * @param integer the ID of the model to be loaded
      */
-    public function loadModel($id) {
-        $model = Advertiser::model()->findByPk($id);
-        if ($model === null)
-            throw new CHttpException(404, 'The requested page does not exist.');
-        return $model;
+    public function loadModel($id = null) {
+        if($id === null) {
+            $model = Advertiser::model();
+            $criteria = new CDbCriteria();
+            $criteria->limit = 1;
+            $criteria->order = 'advertiser_id DESC';
+            $modelData = $model->findAll($criteria);
+            if($modelData){
+                return $modelData;
+            }
+        } else {
+            $model = Advertiser::model()->findByPk($id);
+            if ($model === null)
+                throw new CHttpException(404, 'The requested page does not exist.');
+            return $model;   
+        }
+    }
+    
+    protected function getNewKey() {
+        $myRecord = $this->loadModel();
+        foreach ($myRecord as $recordKey) {
+            $lastID = $recordKey->attributes['advertiser_id'];
+        }
+        if($lastID) {
+            return (int) $lastID + 1;
+        }
     }
 
     /**
@@ -155,5 +179,7 @@ class AdvertiserController extends Controller {
             Yii::app()->end();
         }
     }
+    
+    
 
 }

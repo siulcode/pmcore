@@ -18,8 +18,8 @@ class UserIdentity extends CUserIdentity {
     public function authenticate() {
         $users = array(
             // username => password
-            'demo' => 'demo',
-            'admin' => 'admin',
+            'demo' => 'theorem',
+            'admin' => 'password',
         );
         if (!isset($users[$this->username]))
             $this->errorCode = self::ERROR_USERNAME_INVALID;
@@ -29,5 +29,4 @@ class UserIdentity extends CUserIdentity {
             $this->errorCode = self::ERROR_NONE;
         return !$this->errorCode;
     }
-
 }

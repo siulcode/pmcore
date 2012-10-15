@@ -9,9 +9,9 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List Advertiser', 'url'=>array('index')),
+	array('label'=>'List Advertiser',   'url'=>array('index')),
 	array('label'=>'Create Advertiser', 'url'=>array('create')),
-	array('label'=>'View Advertiser', 'url'=>array('view', 'id'=>$model->advertiser_id)),
+	array('label'=>'View Advertiser',   'url'=>array('view', 'id'=>$model->advertiser_id)),
 	array('label'=>'Manage Advertiser', 'url'=>array('admin')),
 );
 ?>

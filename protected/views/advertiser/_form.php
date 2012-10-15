@@ -16,8 +16,7 @@
 	<?php echo $form->errorSummary($model); ?>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'advertiser_id'); ?>
-		<?php echo $form->textField($model,'advertiser_id'); ?>
+		<?php echo $form->textField($model,'advertiser_id',array('readOnly'=>true, 'hidden'=>true, 'value'=>$newkey)); ?>
 		<?php echo $form->error($model,'advertiser_id'); ?>
 	</div>
 
