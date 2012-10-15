@@ -159,6 +159,10 @@ class AdvertiserController extends Controller {
         }
     }
     
+    /**
+     * Fetches new ID to be inserted by _form view object. 
+     * @return Int
+     */
     protected function getNewKey() {
         $myRecord = $this->loadModel();
         foreach ($myRecord as $recordKey) {
