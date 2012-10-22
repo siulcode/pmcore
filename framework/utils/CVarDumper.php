@@ -40,7 +40,9 @@ class CVarDumper
 	 */
 	public static function dump($var,$depth=10,$highlight=false)
 	{
+            echo '<pre>';
 		echo self::dumpAsString($var,$depth,$highlight);
+            echo '</pre>';
 	}
 
 	/**

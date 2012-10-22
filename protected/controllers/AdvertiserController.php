@@ -80,7 +80,7 @@ class AdvertiserController extends Controller {
      * @param integer $id the ID of the model to be updated
      */
     public function actionUpdate($id) {
-        $model = $this->loadModel($id);
+        $model = Advertiser::model('Advertiser');
 
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
@@ -113,9 +113,11 @@ class AdvertiserController extends Controller {
      * Lists all models.
      */
     public function actionIndex() {
+        $model = $this->loadModel();
         $dataProvider = new CActiveDataProvider('Advertiser');
         $this->render('index', array(
             'dataProvider'  => $dataProvider,
+            'model'         => $model,
         ));
     }
 
