@@ -82,7 +82,7 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'lastmodified'); ?>
-		<?php echo $form->textField($model,'lastmodified'); ?>
+		<?php echo $form->textField($model,'lastmodified',array('value'=> $lastModified)); ?>
 		<?php echo $form->error($model,'lastmodified'); ?>
 	</div>
 

@@ -5,62 +5,41 @@
 $this->breadcrumbs=array(
 	'Advertisers',
 );
+
 $this->menu=array(
 	array('label'=>'Create Advertiser', 'url'=>array('create')),
 	array('label'=>'Manage Advertiser', 'url'=>array('admin')),
 );
+
+Yii::app()->clientScript->registerScript('search', "
+    $('.search-button').click(function(){
+            $('.search-form').toggle();
+            return false;
+    });
+    $('.search-form form').submit(function(){
+            $.fn.yiiGridView.update('advertiser-grid', {
+                    data: $(this).serialize()
+            });
+            return false;
+    });
+");
 ?>
 <h1>Advertisers</h1>
+
+<div class="span-7">
 <?php 
-$this->widget('zii.widgets.grid.CGridView', array(
-    'dataProvider'  => $dataProvider,
-    'ajaxUrl'       => 'Yii::app()->createUrl("/Campaign/byadvertiser", array("id"=>$data["advertiser_id"]))',
-    'columns'       => array(
-        'advertiser_id',
-        'name',
-        'billing_address_1',
-        'status',
-        array(
-            'class' => 'CButtonColumn',
-            'viewButtonUrl' => 'Yii::app()->createUrl("/Campaign/byadvertiser", array("id"=>$data["advertiser_id"]))'
-        ),
-        
-    ),
-));
+echo CHtml::ajaxButton ("Update data",
+                        CController::createUrl('Advertiser/showCampaignColumn'), 
+                        array('update' => '#campaign-wrapper'));
 
-
-$this->widget('zii.widgets.grid.CGridView', array(
-    "dataProvider" => $dataProvider,
-    "selectableRows" => 1,
-    'ajaxUpdate' => true,
-    'columns' => array(
-        'question' =>
-        array(
-            'type' => 'html',
-            'value' => 'CHtml::ajaxLink(
-                    CHtml::Encode($data->question),
-                    Yii::app()->createUrl("campaign/byadvertiser"),
-                    array( // ajaxOptions
-                        "type" => "POST",
-                        "beforeSend" => "function( request )
-                                {
-                        // Set up any pre-sending stuff like initializing progress indicators
-                                        }",
-                        "success" => "function( data )
-                                {
-                                    // handle return data
-                                    alert( data );
-                                }",
-                "data" => array( "val1" => "1", "val2" => "2" )
-                        ),
-
-                    array( //htmlOptions
-                    "href" => Yii::app()->createUrl("graph/ajaxRequest" ),
-
-                    )
-
-            )',
-        )
-    )
+$this->widget('zii.widgets.CListView', array(
+    'dataProvider'  =>$AdvertiserDataColumn,
+    'itemView'      =>'_viewadvcolumn',
 ));
 ?>
+</div>
+<div id="campaign-wrapper" class="span-7">
+<?php
+$this->renderPartial('_loadCampColumn', array('myValue' => $myValue));
+?>
+</div>

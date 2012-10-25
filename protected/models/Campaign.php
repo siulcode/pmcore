@@ -7,17 +7,22 @@
  * @property integer $campaign_id
  * @property string $name
  * @property string $description
- * @property string $effective_date
- * @property string $end_date
+ * @property integer $channeltype_id
  * @property integer $version
+ * @property string $effdate
+ * @property string $enddate
+ * @property integer $active
+ * @property string $budget
  * @property integer $advertiser_id
- * @property string $channel_type
- * @property string $active
- * @property string $last_modification
- * @property integer $user_id
+ * @property integer $network_id
+ * @property string $lastmodified
+ * @property integer $lastmodifiedby
  *
  * The followings are the available model relations:
+ * @property Channeltype $channeltype
  * @property Advertiser $advertiser
+ * @property Network $network
+ * @property User $lastmodifiedby0
  */
 class Campaign extends CActiveRecord {
 
@@ -44,16 +49,15 @@ class Campaign extends CActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('name, effective_date, advertiser_id, active, user_id', 'required'),
-            array('version, advertiser_id, user_id', 'numerical', 'integerOnly' => true),
-            array('name', 'length', 'max' => 40),
-            array('description', 'length', 'max' => 100),
-            array('channel_type', 'length', 'max' => 11),
-            array('active', 'length', 'max' => 10),
-            array('end_date, last_modification', 'safe'),
+            array('channeltype_id, advertiser_id, network_id, lastmodifiedby', 'required'),
+            array('channeltype_id, version, active, advertiser_id, network_id, lastmodifiedby', 'numerical', 'integerOnly' => true),
+            array('name', 'length', 'max' => 45),
+            array('description', 'length', 'max' => 200),
+            array('budget', 'length', 'max' => 7),
+            array('effdate, enddate, lastmodified', 'safe'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('campaign_id, name, description, effective_date, end_date, version, advertiser_id, channel_type, active, last_modification, user_id', 'safe', 'on' => 'search'),
+            array('campaign_id, name, description, channeltype_id, version, effdate, enddate, active, budget, advertiser_id, network_id, lastmodified, lastmodifiedby', 'safe', 'on' => 'search'),
         );
     }
 
@@ -64,7 +68,10 @@ class Campaign extends CActiveRecord {
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
         return array(
-            'advertiser' => array(self::BELONGS_TO, 'Advertiser', 'advertiser_id'),
+            'channeltype'       => array(self::BELONGS_TO, 'Channeltype', 'channeltype_id'),
+            'advertiser'        => array(self::BELONGS_TO, 'Advertiser', 'advertiser_id'),
+            'network'           => array(self::BELONGS_TO, 'Network', 'network_id'),
+            'lastmodifiedby0'   => array(self::BELONGS_TO, 'User', 'lastmodifiedby'),
         );
     }
 
@@ -73,17 +80,19 @@ class Campaign extends CActiveRecord {
      */
     public function attributeLabels() {
         return array(
-            'campaign_id' => 'Campaign',
-            'name' => 'Name',
-            'description' => 'Description',
-            'effective_date' => 'Effective Date',
-            'end_date' => 'End Date',
-            'version' => 'Version',
-            'advertiser_id' => 'Advertiser',
-            'channel_type' => 'Channel Type',
-            'active' => 'Active',
-            'last_modification' => 'Last Modification',
-            'user_id' => 'User',
+            'campaign_id'    => 'Campaign',
+            'name'           => 'Name',
+            'description'    => 'Description',
+            'channeltype_id' => 'Channeltype',
+            'version'        => 'Version',
+            'effdate'        => 'Effdate',
+            'enddate'        => 'Enddate',
+            'active'         => 'Active',
+            'budget'         => 'Budget',
+            'advertiser_id'  => 'Advertiser',
+            'network_id'     => 'Network',
+            'lastmodified'   => 'Lastmodified',
+            'lastmodifiedby' => 'Lastmodifiedby',
         );
     }
 
@@ -100,17 +109,20 @@ class Campaign extends CActiveRecord {
         $criteria->compare('campaign_id', $this->campaign_id);
         $criteria->compare('name', $this->name, true);
         $criteria->compare('description', $this->description, true);
-        $criteria->compare('effective_date', $this->effective_date, true);
-        $criteria->compare('end_date', $this->end_date, true);
+        $criteria->compare('channeltype_id', $this->channeltype_id);
         $criteria->compare('version', $this->version);
+        $criteria->compare('effdate', $this->effdate, true);
+        $criteria->compare('enddate', $this->enddate, true);
+        $criteria->compare('active', $this->active);
+        $criteria->compare('budget', $this->budget, true);
         $criteria->compare('advertiser_id', $this->advertiser_id);
-        $criteria->compare('channel_type', $this->channel_type, true);
-        $criteria->compare('active', $this->active, true);
-        $criteria->compare('last_modification', $this->last_modification, true);
-        $criteria->compare('user_id', $this->user_id);
+        $criteria->compare('network_id', $this->network_id);
+        $criteria->compare('lastmodified', $this->lastmodified, true);
+        $criteria->compare('lastmodifiedby', $this->lastmodifiedby);
 
         return new CActiveDataProvider($this, array(
                     'criteria' => $criteria,
                 ));
     }
+
 }

@@ -2,10 +2,6 @@
 
 class AdvertiserController extends Controller {
 
-    /**
-     * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
-     * using two-column layout. See 'protected/views/layouts/column2.php'.
-     */
     public $layout = '//layouts/column2';
 
     /**
@@ -13,8 +9,8 @@ class AdvertiserController extends Controller {
      */
     public function filters() {
         return array(
-            'accessControl', // perform access control for CRUD operations
-            'postOnly + delete', // we only allow deletion via POST request
+            'accessControl', 
+            'postOnly + delete', 
         );
     }
 
@@ -25,12 +21,8 @@ class AdvertiserController extends Controller {
      */
     public function accessRules() {
         return array(
-            array('allow', // allow all users to perform 'index' and 'view' actions
-                'actions' => array('index', 'view'),
-                'users' => array('*'),
-            ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('create', 'update'),
+                'actions' => array('index', 'view', 'create', 'update', 'showcampaigncolumn'),
                 'users' => array('@'),
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -60,8 +52,24 @@ class AdvertiserController extends Controller {
     public function actionCreate() {
         $model = new Advertiser;
         $newkey = $this->getNewKey(); //New key to be inserted
-        // Uncomment the following line if AJAX validation is needed
-        // $this->performAjaxValidation($model);
+        /**
+         * @TODO: This should be outta here. Duplicated on Update. 
+         */
+        $arRawDate      = getdate(time());
+        $lastModified   = array(
+                            $arRawDate['year'] . 
+                            '-' . 
+                            $arRawDate['mon'] . 
+                            '-' . 
+                            $arRawDate['mday'] . 
+                            ' ' . 
+                            $arRawDate['hours'] . 
+                            ':' . 
+                            $arRawDate['minutes'] . 
+                            ':' . 
+                            $arRawDate['seconds']
+                            );
+        /**END modified date*/
         if (isset($_POST['Advertiser'])) {
             $model->attributes = $_POST['Advertiser'];
             if ($model->save())
@@ -69,8 +77,9 @@ class AdvertiserController extends Controller {
         }
         
         $this->render('create', array(
-            'model' => $model,
-            'newkey'=> $newkey,
+            'model'         => $model,
+            'newkey'        => $newkey,
+            'lastModified'  => $lastModified[0],
         ));
     }
 
@@ -80,11 +89,22 @@ class AdvertiserController extends Controller {
      * @param integer $id the ID of the model to be updated
      */
     public function actionUpdate($id) {
-        $model = Advertiser::model('Advertiser');
-
-        // Uncomment the following line if AJAX validation is needed
-        // $this->performAjaxValidation($model);
-
+        $model          = $this->loadModel($id);
+        $arRawDate      = getdate(time());
+        $lastModified   = array(
+                            $arRawDate['year'] . 
+                            '-' . 
+                            $arRawDate['mon'] . 
+                            '-' . 
+                            $arRawDate['mday'] . 
+                            ' ' . 
+                            $arRawDate['hours'] . 
+                            ':' . 
+                            $arRawDate['minutes'] . 
+                            ':' . 
+                            $arRawDate['seconds']
+                            );
+        
         if (isset($_POST['Advertiser'])) {
             $model->attributes = $_POST['Advertiser'];
             if ($model->save())
@@ -92,7 +112,9 @@ class AdvertiserController extends Controller {
         }
 
         $this->render('update', array(
-            'model' => $model,
+            'model'         => $model,
+            'newkey'        => $id, //new key to be fetch from $_GET
+            'lastModified'  => $lastModified[0],
         ));
     }
 
@@ -113,14 +135,28 @@ class AdvertiserController extends Controller {
      * Lists all models.
      */
     public function actionIndex() {
-        $model = $this->loadModel();
-        $dataProvider = new CActiveDataProvider('Advertiser');
+        $myValue = 'Content Data';
+        $AdvertiserDataColumn = new CActiveDataProvider('Advertiser', array(
+            'pagination'    => array('pageSize' => 4),
+        ));
         $this->render('index', array(
-            'dataProvider'  => $dataProvider,
-            'model'         => $model,
+            'AdvertiserDataColumn' => $AdvertiserDataColumn,
+            'myValue'              => $myValue,
         ));
     }
 
+    public function actionShowCampaignColumn() {
+        $myValue = 'Content Updated through'. __METHOD__;
+        
+        $CampaignDataColumn = new CActiveDataProvider('Campaign', array(
+            'pagination'    => array('pageSize' => 4),
+        ));
+        $this->renderPartial('_loadCampColumn', array(
+            'CampaignDataColumn' => $CampaignDataColumn,
+            'myValue'            => $myValue,
+        ), FALSE, TRUE);
+    }
+    
     /**
      * Manages all models.
      */

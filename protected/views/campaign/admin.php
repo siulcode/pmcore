@@ -48,15 +48,17 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'campaign_id',
 		'name',
 		'description',
-		'effective_date',
-		'end_date',
+		'channeltype_id',
 		'version',
+		'effdate',
 		/*
-		'advertiser_id',
-		'channel_type',
+		'enddate',
 		'active',
-		'last_modification',
-		'user_id',
+		'budget',
+		'advertiser_id',
+		'network_id',
+		'lastmodified',
+		'lastmodifiedby',
 		*/
 		array(
 			'class'=>'CButtonColumn',

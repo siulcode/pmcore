@@ -61,6 +61,8 @@ class Advertiser extends CActiveRecord {
      * @return array relational rules.
      */
     public function relations() {
+        // NOTE: you may need to adjust the relation name and the related
+        // class name for the relations automatically generated below.
         return array(
             'network' => array(self::BELONGS_TO, 'Network', 'network_id'),
         );
@@ -73,7 +75,7 @@ class Advertiser extends CActiveRecord {
         return array(
             'advertiser_id'     => 'Advertiser',
             'name'              => 'Name',
-            'billing_address_1' => 'Billing Address 1',
+            'billing_address_1' => 'Billing Address',
             'billing_address_2' => 'Billing Address 2',
             'billing_state'     => 'Billing State',
             'billing_zip'       => 'Billing Zip',

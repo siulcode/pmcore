@@ -51,16 +51,9 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'billing_address_2',
 		'billing_state',
 		'billing_zip',
-		/*
-		'default_currency',
-		'timezone',
-		'billing_country',
-		'network_id',
-		'status',
-		'lastmodified',
-		*/
 		array(
 			'class'=>'CButtonColumn',
 		),
 	),
-)); ?>
+)); 
+?>

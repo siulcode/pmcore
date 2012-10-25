@@ -18,22 +18,17 @@
 
 	<div class="row">
 		<?php echo $form->label($model,'name'); ?>
-		<?php echo $form->textField($model,'name',array('size'=>40,'maxlength'=>40)); ?>
+		<?php echo $form->textField($model,'name',array('size'=>45,'maxlength'=>45)); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->label($model,'description'); ?>
-		<?php echo $form->textField($model,'description',array('size'=>60,'maxlength'=>100)); ?>
+		<?php echo $form->textField($model,'description',array('size'=>60,'maxlength'=>200)); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'effective_date'); ?>
-		<?php echo $form->textField($model,'effective_date'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'end_date'); ?>
-		<?php echo $form->textField($model,'end_date'); ?>
+		<?php echo $form->label($model,'channeltype_id'); ?>
+		<?php echo $form->textField($model,'channeltype_id'); ?>
 	</div>
 
 	<div class="row">
@@ -42,28 +37,43 @@
 	</div>
 
 	<div class="row">
+		<?php echo $form->label($model,'effdate'); ?>
+		<?php echo $form->textField($model,'effdate'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model,'enddate'); ?>
+		<?php echo $form->textField($model,'enddate'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model,'active'); ?>
+		<?php echo $form->textField($model,'active'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model,'budget'); ?>
+		<?php echo $form->textField($model,'budget',array('size'=>7,'maxlength'=>7)); ?>
+	</div>
+
+	<div class="row">
 		<?php echo $form->label($model,'advertiser_id'); ?>
 		<?php echo $form->textField($model,'advertiser_id'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'channel_type'); ?>
-		<?php echo $form->textField($model,'channel_type',array('size'=>11,'maxlength'=>11)); ?>
+		<?php echo $form->label($model,'network_id'); ?>
+		<?php echo $form->textField($model,'network_id'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'active'); ?>
-		<?php echo $form->textField($model,'active',array('size'=>10,'maxlength'=>10)); ?>
+		<?php echo $form->label($model,'lastmodified'); ?>
+		<?php echo $form->textField($model,'lastmodified'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'last_modification'); ?>
-		<?php echo $form->textField($model,'last_modification'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'user_id'); ?>
-		<?php echo $form->textField($model,'user_id'); ?>
+		<?php echo $form->label($model,'lastmodifiedby'); ?>
+		<?php echo $form->textField($model,'lastmodifiedby'); ?>
 	</div>
 
 	<div class="row buttons">

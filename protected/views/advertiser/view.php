@@ -18,9 +18,7 @@ $this->menu=array(
 
 <h1>View Advertiser #<?php echo $model->advertiser_id; ?></h1>
 
-<?php
-//'viewButtonUrl' => 'Yii::app()->createUrl("/Cars/view", array("id"=>$data["id"]))'
-$this->widget('zii.widgets.CDetailView', array(
+<?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
 		'advertiser_id',
@@ -36,5 +34,4 @@ $this->widget('zii.widgets.CDetailView', array(
 		'status',
 		'lastmodified',
 	),
-));
-?>
+)); ?>

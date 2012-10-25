@@ -8,6 +8,8 @@
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'Portfolio Manager - Dev',
+        'homeUrl'=>'http://pmcore.dev',
+        'defaultController' => 'advertiser',
 
 	// preloading 'log' component
 	'preload'=>array('log'),
@@ -50,13 +52,22 @@ return array(
 		),
                  */
 		// uncomment the following to use a MySQL database
-		'db'=>array(
-			'connectionString' => 'mysql:host=localhost;dbname=pmcore',
+		/*'db'=>array(
+			'connectionString' => 'mysql:host=portmandb.ctzwque3zyis.us-east-1.rds.amazonaws.com;dbname=pmcore',
 			'emulatePrepare' => true,
-			'username' => 'tddbuser',
-			'password' => 'password',
+			'username' => 'pmapp',
+			'password' => 'pm123app!',
 			'charset' => 'utf8',
 		),
+                 * 
+                 */
+                'db'=>array(
+			'connectionString' => 'mysql:host=localhost;dbname=pmcore',
+			'emulatePrepare' => true,
+			'username' => 'root',
+			'password' => 'root',
+			'charset' => 'utf8',
+                ),
 		'errorHandler'=>array(
 			// use 'site/error' action to display errors
 			'errorAction'=>'site/error',

@@ -15,4 +15,6 @@ $this->menu=array(
 
 <h1>Create Advertiser</h1>
 
-<?php echo $this->renderPartial('_form', array('model'=>$model,'newkey'=>$newkey)); ?>
+<?php echo $this->renderPartial('_form', array('model'        => $model,
+                                               'newkey'       => $newkey,
+                                               'lastModified' => $lastModified)); ?>

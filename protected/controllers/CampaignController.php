@@ -44,28 +44,41 @@ class CampaignController extends Controller {
     }
 
     /**
+     * Lists all models.
+     */
+    public function actionIndex() {
+        $dataProvider = new CActiveDataProvider('Campaign', array(
+            'pagination'    => array('pageSize' => 2),
+        ));
+        $this->render('index', array(
+            'dataProvider' => $dataProvider,
+        ));
+    }
+    
+    /**
+     * Displays campaigns by Advertiser ID. 
+     * @param type $id
+     * @return Campaign By ID. 
+     */
+    public function actionByAdvertiser($id) {
+        $model = Campaign::model();
+        $result = $model->with(array(
+            'advertiser' => array(
+                'condition' => 'advertiser.advertiser_id='.$id,
+            ),
+        ))->findAll();
+        $this->renderPartial('byadvertiser', array(
+            'result' => $result,
+        ));
+    }
+    
+    /**
      * Displays a particular model.
      * @param integer $id the ID of the model to be displayed
      */
     public function actionView($id) {
         $this->render('view', array(
             'model' => $this->loadModel($id),
-        ));
-    }
-    
-    /**
-     * Returns campaigns attached by Advertisers. 
-     * @param type $id 
-     */
-    public function actionByAdvertiser($id) {
-        $model = Campaign::model();
-        $results = $model->with(array(
-            'advertiser' => array(
-                'condition' => 'advertiser.advertiser_id='.$id,
-            )
-        ))->findAll();
-        $this->renderPartial('byadvertiser', array(
-            'results' => $results,
         ));
     }
 
@@ -123,16 +136,6 @@ class CampaignController extends Controller {
         // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
         if (!isset($_GET['ajax']))
             $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
-    }
-
-    /**
-     * Lists all models.
-     */
-    public function actionIndex() {
-        $dataProvider = new CActiveDataProvider('Campaign');
-        $this->render('index', array(
-            'dataProvider' => $dataProvider,
-        ));
     }
 
     /**

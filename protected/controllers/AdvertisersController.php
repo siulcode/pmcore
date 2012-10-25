@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * @DESC Parallel controller to wrapup htmltable extension. 
+ */
 class AdvertisersController extends Controller {
     
     protected $allRecords;

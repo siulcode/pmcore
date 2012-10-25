@@ -17,26 +17,20 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'name'); ?>
-		<?php echo $form->textField($model,'name',array('size'=>40,'maxlength'=>40)); ?>
+		<?php echo $form->textField($model,'name',array('size'=>45,'maxlength'=>45)); ?>
 		<?php echo $form->error($model,'name'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'description'); ?>
-		<?php echo $form->textField($model,'description',array('size'=>60,'maxlength'=>100)); ?>
+		<?php echo $form->textField($model,'description',array('size'=>60,'maxlength'=>200)); ?>
 		<?php echo $form->error($model,'description'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'effective_date'); ?>
-		<?php echo $form->textField($model,'effective_date'); ?>
-		<?php echo $form->error($model,'effective_date'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'end_date'); ?>
-		<?php echo $form->textField($model,'end_date'); ?>
-		<?php echo $form->error($model,'end_date'); ?>
+		<?php echo $form->labelEx($model,'channeltype_id'); ?>
+		<?php echo $form->textField($model,'channeltype_id'); ?>
+		<?php echo $form->error($model,'channeltype_id'); ?>
 	</div>
 
 	<div class="row">
@@ -46,33 +40,51 @@
 	</div>
 
 	<div class="row">
+		<?php echo $form->labelEx($model,'effdate'); ?>
+		<?php echo $form->textField($model,'effdate'); ?>
+		<?php echo $form->error($model,'effdate'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'enddate'); ?>
+		<?php echo $form->textField($model,'enddate'); ?>
+		<?php echo $form->error($model,'enddate'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'active'); ?>
+		<?php echo $form->textField($model,'active'); ?>
+		<?php echo $form->error($model,'active'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'budget'); ?>
+		<?php echo $form->textField($model,'budget',array('size'=>7,'maxlength'=>7)); ?>
+		<?php echo $form->error($model,'budget'); ?>
+	</div>
+
+	<div class="row">
 		<?php echo $form->labelEx($model,'advertiser_id'); ?>
 		<?php echo $form->textField($model,'advertiser_id'); ?>
 		<?php echo $form->error($model,'advertiser_id'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'channel_type'); ?>
-		<?php echo $form->textField($model,'channel_type',array('size'=>11,'maxlength'=>11)); ?>
-		<?php echo $form->error($model,'channel_type'); ?>
+		<?php echo $form->labelEx($model,'network_id'); ?>
+		<?php echo $form->textField($model,'network_id'); ?>
+		<?php echo $form->error($model,'network_id'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'active'); ?>
-		<?php echo $form->textField($model,'active',array('size'=>10,'maxlength'=>10)); ?>
-		<?php echo $form->error($model,'active'); ?>
+		<?php echo $form->labelEx($model,'lastmodified'); ?>
+		<?php echo $form->textField($model,'lastmodified'); ?>
+		<?php echo $form->error($model,'lastmodified'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'last_modification'); ?>
-		<?php echo $form->textField($model,'last_modification'); ?>
-		<?php echo $form->error($model,'last_modification'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'user_id'); ?>
-		<?php echo $form->textField($model,'user_id'); ?>
-		<?php echo $form->error($model,'user_id'); ?>
+		<?php echo $form->labelEx($model,'lastmodifiedby'); ?>
+		<?php echo $form->textField($model,'lastmodifiedby'); ?>
+		<?php echo $form->error($model,'lastmodifiedby'); ?>
 	</div>
 
 	<div class="row buttons">
