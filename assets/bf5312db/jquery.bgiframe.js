@@ -36,4 +36,8 @@ function prop(n) {
     return n && n.constructor === Number ? n + 'px' : n;
 }
 
+<<<<<<< HEAD
 })(jQuery);
+=======
+})(jQuery);
+>>>>>>> origin/master

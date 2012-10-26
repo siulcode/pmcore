@@ -810,4 +810,8 @@ $.fn.selection = function(start, end) {
 	}
 };
 
+<<<<<<< HEAD
 })(jQuery);
+=======
+})(jQuery);
+>>>>>>> origin/master

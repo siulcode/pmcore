@@ -34,4 +34,8 @@
 		});
 	};
 
+<<<<<<< HEAD
 })(jQuery);
+=======
+})(jQuery);
+>>>>>>> origin/master

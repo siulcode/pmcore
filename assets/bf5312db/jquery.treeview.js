@@ -253,4 +253,8 @@
 		hitarea: "hitarea"
 	});
 
+<<<<<<< HEAD
 })(jQuery);
+=======
+})(jQuery);
+>>>>>>> origin/master

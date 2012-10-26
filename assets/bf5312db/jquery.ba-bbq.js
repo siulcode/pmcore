@@ -1134,4 +1134,8 @@
     return self;
   })();
 
+<<<<<<< HEAD
 })(jQuery,this);
+=======
+})(jQuery,this);
+>>>>>>> origin/master

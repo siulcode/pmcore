@@ -145,4 +145,8 @@ $.fn.metadata = function( opts ){
   return $.metadata.get( this[0], opts );
 };
 
+<<<<<<< HEAD
 })(jQuery);
+=======
+})(jQuery);
+>>>>>>> origin/master

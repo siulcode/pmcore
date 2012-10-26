@@ -89,4 +89,8 @@ jQuery.cookie = function(name, value, options) {
         }
         return cookieValue;
     }
+<<<<<<< HEAD
 };
+=======
+};
+>>>>>>> origin/master
