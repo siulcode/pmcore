@@ -32,9 +32,12 @@ echo CHtml::ajaxButton ("Update data",
                         CController::createUrl('Advertiser/showCampaignColumn'), 
                         array('update' => '#campaign-wrapper'));
 
+
+echo CHtml::ajaxLink('loadMe', array('showCampaignColumn'), array('update' => '#campaign-wrapper'));
+
 $this->widget('zii.widgets.CListView', array(
-    'dataProvider'  =>$AdvertiserDataColumn,
-    'itemView'      =>'_viewadvcolumn',
+    'dataProvider'  => $AdvertiserDataColumn,
+    'itemView'      => '_viewadvcolumn',
 ));
 ?>
 </div>
